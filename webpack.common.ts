@@ -22,6 +22,7 @@ module.exports = {
     alias: {
       components: path.resolve(__dirname, 'src/components'),
       hooks: path.resolve(__dirname, 'src/hooks'),
+      services: path.resolve(__dirname, 'src/services'),
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
