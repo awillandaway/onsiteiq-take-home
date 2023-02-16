@@ -44,6 +44,12 @@
 				"namedComponents": "arrow-function"
 			}
 		],
+		"react/require-default-props": [
+			1,
+			{
+				"ignoreFunctionalComponents": true
+			}
+		],
 		"@typescript-eslint/consistent-type-imports": "warn",
 		"@typescript-eslint/no-shadow": [
 			"error"
