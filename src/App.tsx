@@ -1,13 +1,14 @@
-import { Modal } from 'components/shared/Modal/Modal';
 import { useModal } from 'hooks/useModal';
 import { useState } from 'react';
 import { getRandomCandidate } from 'services/CandidateService';
+import { CandidateInfoCard } from 'components/CandidateInfoCard/CandidateInfoCard';
+import type { Candidate } from 'types/Candidate';
 import { MainContent, Navbar, NotificationNumber, NotificationsSection } from './App.styles';
 import './App.css';
 
 const App = () => {
   const { isOpen, toggleModal } = useModal();
-  const [currentCandidateInfo, setCurrentCandidateInfo] = useState<any>({});
+  const [currentCandidateInfo, setCurrentCandidateInfo] = useState<Candidate | null>();
 
   const onClickGetCandidate = () => {
     getRandomCandidate().then((candidate) => {
@@ -25,21 +26,15 @@ const App = () => {
       </Navbar>
 
       <MainContent>
-        <button type="button" onClick={toggleModal}>
-          Start a New Review
-        </button>
-        <button type="button" onClick={onClickGetCandidate}>
-          Get Candidate
-        </button>
-        <pre>{JSON.stringify(currentCandidateInfo)}</pre>
         {/** add icons to buttons */}
+        <button type="button" onClick={onClickGetCandidate}>
+          Start New Candidate Review
+        </button>
         <button type="button">View Completed Reviews</button> {/** this may make sense to open a separate page */}
+        <pre>{JSON.stringify(currentCandidateInfo)}</pre>
+        {!currentCandidateInfo && <div>Please click the Start New Candidate Review button to start a review.</div>}
+        {currentCandidateInfo && <CandidateInfoCard candidate={currentCandidateInfo} />}
       </MainContent>
-      <Modal isOpen={isOpen} toggleModal={toggleModal}>
-        <button type="button">Approve Candidate</button> {/** maybe just have this in the page itself */}
-        <button type="button">Reject Candidate</button>
-        <input type="text" placeholder="Notes" />
-      </Modal>
     </div>
   );
 };

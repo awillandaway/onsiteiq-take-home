@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+export const onsiteIqPurple = '#680adc';
+
 export const Navbar = styled.nav`
   background-color: #111111;
   padding: 8px 16px;
@@ -13,9 +15,9 @@ export const NotificationsSection = styled.div`
 `;
 
 export const NotificationNumber = styled.span`
-  color: #680adc;
+  color: ${onsiteIqPurple};
   font-weight: 500;
-  border: 1px solid #673ab7;
+  border: 1px solid ${onsiteIqPurple};
   width: 19px;
   height: 19px;
   display: inline-flex;
