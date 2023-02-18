@@ -7,7 +7,7 @@ import { MainContent, Navbar, NotificationNumber, NotificationsSection } from '.
 import './App.css';
 
 const App = () => {
-  const { isOpen, toggleModal } = useModal();
+  // const { isOpen, toggleModal } = useModal();
   const [currentCandidateInfo, setCurrentCandidateInfo] = useState<Candidate | null>();
 
   const onClickGetCandidate = () => {
@@ -31,7 +31,6 @@ const App = () => {
           Start New Candidate Review
         </button>
         <button type="button">View Completed Reviews</button> {/** this may make sense to open a separate page */}
-        <pre>{JSON.stringify(currentCandidateInfo)}</pre>
         {!currentCandidateInfo && <div>Please click the Start New Candidate Review button to start a review.</div>}
         {currentCandidateInfo && <CandidateInfoCard candidate={currentCandidateInfo} />}
       </MainContent>
