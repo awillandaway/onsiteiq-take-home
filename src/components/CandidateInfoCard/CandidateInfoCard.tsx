@@ -1,5 +1,6 @@
 import { Card } from 'components/shared/Card/Card';
 import type { Candidate } from 'types/Candidate';
+import { capitalizeFirstLetter } from 'utils/StringUtils';
 import { Name, PhotoAndName, SectionHeader } from './CandidateInfoCard.styles';
 import { CardField } from './CardField/CardField';
 
@@ -35,7 +36,7 @@ export const CandidateInfoCard = ({ candidate }: CandidateInfoCardProps) => {
 
       <SectionHeader>Basic Info</SectionHeader>
       <CardField label="Registered">{registeredDate.toLocaleDateString()}</CardField>
-      <CardField label="Gender">{candidate.gender}</CardField>
+      <CardField label="Gender">{capitalizeFirstLetter(candidate.gender)}</CardField>
       <CardField label="Age">{candidate.dob.age}</CardField>
 
       <SectionHeader>Contact Info</SectionHeader>
