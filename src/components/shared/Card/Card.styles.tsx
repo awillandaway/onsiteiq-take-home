@@ -6,4 +6,5 @@ export const CardWrapper = styled.div`
   border: 2px solid ${onsiteIqPurple};
   background-color: #111111;
   padding: 16px;
+  max-width: 800px;
 `;
