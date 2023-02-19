@@ -40,17 +40,19 @@ const App = () => {
     });
   };
 
-  const onApproveCandidate = (candidate: Candidate) => {
-    saveCandidate(candidate, 'approved');
+  const onApproveCandidate = (candidate: Candidate, notes?: string) => {
+    saveCandidate(candidate, 'approved', notes);
     updateSavedCandidatesList();
     setCurrentCandidateInfo(null);
   };
 
-  const onRejectCandidate = (candidate: Candidate) => {
-    saveCandidate(candidate, 'rejected');
+  const onRejectCandidate = (candidate: Candidate, notes?: string) => {
+    saveCandidate(candidate, 'rejected', notes);
     updateSavedCandidatesList();
     setCurrentCandidateInfo(null);
   };
+
+  const onEditCandidate = () => {};
 
   return (
     <div>
@@ -58,6 +60,7 @@ const App = () => {
         <h1>OnsiteIQ HR Application</h1>
         <NotificationsSection>
           You have <NotificationNumber>{Math.floor(Math.random() * 8) + 2}</NotificationNumber> candidates to review.
+          {/* Note: this number is random and therefore not accurate; I just thought it would look nice for visual purposes */}
         </NotificationsSection>
       </Navbar>
 

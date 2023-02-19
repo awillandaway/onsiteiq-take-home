@@ -16,10 +16,7 @@ export const getRandomCandidate = async (): Promise<Candidate | null> => {
   }
 };
 
-export type Status = 'approved' | 'rejected' | 'not_yet_reviewed';
-
 export interface ExtendedCandidate extends Candidate {
-  status: Status;
   savedId: string; // named this way to avoid conflict with existing ID field from original randomuser API
 }
 
@@ -36,16 +33,22 @@ export const getSavedCandidates = async (): Promise<ExtendedCandidate[]> => {
   }
 };
 
-export const saveCandidate = async (candidate: Candidate, status: 'approved' | 'rejected'): Promise<string | null> => {
+export const saveCandidate = async (
+  candidate: Candidate,
+  status: 'approved' | 'rejected',
+  notes?: string,
+): Promise<string | null> => {
   try {
-    console.log(status, candidate);
     const localStorageCandidates = localStorage.getItem('candidates');
     const id = generateId();
     if (localStorageCandidates) {
       const parsedCandidates = JSON.parse(localStorageCandidates); // parse existing candidates
-      localStorage.setItem('candidates', JSON.stringify([...parsedCandidates, { ...candidate, status, savedId: id }]));
+      localStorage.setItem(
+        'candidates',
+        JSON.stringify([...parsedCandidates, { ...candidate, status, savedId: id, notes }]),
+      );
     } else {
-      localStorage.setItem('candidates', JSON.stringify([{ ...candidate, status, savedId: id }]));
+      localStorage.setItem('candidates', JSON.stringify([{ ...candidate, status, savedId: id, notes }]));
     }
     return id;
   } catch (error) {

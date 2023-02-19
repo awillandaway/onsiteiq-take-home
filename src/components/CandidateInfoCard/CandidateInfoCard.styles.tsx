@@ -1,6 +1,6 @@
 import { ButtonWrapper } from 'components/shared/Button/Button.styles';
 import { onsiteIqPurple } from 'constants/colors';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const CandidateInfoCardWrapper = styled.div``;
 
@@ -30,6 +30,11 @@ export const SectionHeader = styled.div`
 `;
 
 export const NotesTextArea = styled.textarea`
+  ${(props) =>
+    props.disabled &&
+    css`
+      color: white;
+    `}
   margin-top: 8px;
   resize: none;
   height: 6rem;

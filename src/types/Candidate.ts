@@ -61,4 +61,5 @@ export interface Candidate {
   picture: Picture;
   nat: string;
   status: Status;
+  notes?: string;
 }
