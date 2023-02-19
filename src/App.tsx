@@ -1,19 +1,55 @@
 import { useModal } from 'hooks/useModal';
-import { useState } from 'react';
-import { getRandomCandidate } from 'services/CandidateService';
+import { useEffect, useState } from 'react';
+import type { ExtendedCandidate } from 'services/CandidateService';
+import { getRandomCandidate, getSavedCandidates, saveCandidate } from 'services/CandidateService';
 import { CandidateInfoCard } from 'components/CandidateInfoCard/CandidateInfoCard';
 import type { Candidate } from 'types/Candidate';
-import { MainContent, Navbar, NotificationNumber, NotificationsSection } from './App.styles';
+import { Button } from 'components/shared/Button/Button';
+import {
+  CandidateList,
+  MainContent,
+  Navbar,
+  NewReviewSection,
+  NotificationNumber,
+  NotificationsSection,
+  SavedReviewsSection,
+  StartNewReview,
+} from './App.styles';
 import './App.css';
 
 const App = () => {
   // const { isOpen, toggleModal } = useModal();
   const [currentCandidateInfo, setCurrentCandidateInfo] = useState<Candidate | null>();
 
+  const [savedCandidates, setSavedCandidates] = useState<ExtendedCandidate[]>([]);
+
+  const updateSavedCandidatesList = async () => {
+    const candidates = await getSavedCandidates();
+    setSavedCandidates([...candidates]);
+  };
+
+  useEffect(() => {
+    updateSavedCandidatesList();
+  }, []);
+
   const onClickGetCandidate = () => {
     getRandomCandidate().then((candidate) => {
-      setCurrentCandidateInfo(candidate);
+      if (candidate) {
+        setCurrentCandidateInfo({ ...candidate, status: 'not_yet_reviewed' });
+      }
     });
+  };
+
+  const onApproveCandidate = (candidate: Candidate) => {
+    saveCandidate(candidate, 'approved');
+    updateSavedCandidatesList();
+    setCurrentCandidateInfo(null);
+  };
+
+  const onRejectCandidate = (candidate: Candidate) => {
+    saveCandidate(candidate, 'rejected');
+    updateSavedCandidatesList();
+    setCurrentCandidateInfo(null);
   };
 
   return (
@@ -26,13 +62,35 @@ const App = () => {
       </Navbar>
 
       <MainContent>
-        {/** add icons to buttons */}
-        <button type="button" onClick={onClickGetCandidate}>
-          Start New Candidate Review
-        </button>
-        <button type="button">View Completed Reviews</button> {/** this may make sense to open a separate page */}
-        {!currentCandidateInfo && <div>Please click the Start New Candidate Review button to start a review.</div>}
-        {currentCandidateInfo && <CandidateInfoCard candidate={currentCandidateInfo} />}
+        <NewReviewSection>
+          <h2>New Review</h2>
+          {!currentCandidateInfo && (
+            <StartNewReview>
+              Please click the Start New Candidate Review button to start a review.
+              <Button onClick={onClickGetCandidate} text="Start New Candidate Review" />
+            </StartNewReview>
+          )}
+
+          {currentCandidateInfo && (
+            <CandidateInfoCard
+              candidate={currentCandidateInfo}
+              onApproveCandidate={onApproveCandidate}
+              onRejectCandidate={onRejectCandidate}
+            />
+          )}
+        </NewReviewSection>
+        <SavedReviewsSection>
+          <h2>Saved Reviews</h2>
+          <CandidateList>
+            {savedCandidates.map((candidate) => (
+              <CandidateInfoCard
+                candidate={candidate}
+                onApproveCandidate={onApproveCandidate}
+                onRejectCandidate={onRejectCandidate}
+              />
+            ))}
+          </CandidateList>
+        </SavedReviewsSection>
       </MainContent>
     </div>
   );

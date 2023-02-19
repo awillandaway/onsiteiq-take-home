@@ -1,14 +1,26 @@
+import { Button } from 'components/shared/Button/Button';
 import { Card } from 'components/shared/Card/Card';
+import type { ExtendedCandidate } from 'services/CandidateService';
 import type { Candidate } from 'types/Candidate';
 import { capitalizeFirstLetter } from 'utils/StringUtils';
-import { Name, PhotoAndName, SectionHeader } from './CandidateInfoCard.styles';
+import {
+  ButtonSection,
+  Name,
+  NameAndStatus,
+  NotesTextArea,
+  PhotoAndName,
+  SectionHeader,
+  Status,
+} from './CandidateInfoCard.styles';
 import { CardField } from './CardField/CardField';
 
 interface CandidateInfoCardProps {
-  candidate: Candidate;
+  candidate: Candidate | ExtendedCandidate;
+  onApproveCandidate: (candidate: Candidate) => void;
+  onRejectCandidate: (candidate: Candidate) => void;
 }
 
-export const CandidateInfoCard = ({ candidate }: CandidateInfoCardProps) => {
+export const CandidateInfoCard = ({ candidate, onApproveCandidate, onRejectCandidate }: CandidateInfoCardProps) => {
   const formatCandidateName = () => {
     const { title, first, last } = candidate.name;
     return `${title} ${first} ${last}`; // should we show title?
@@ -26,12 +38,27 @@ export const CandidateInfoCard = ({ candidate }: CandidateInfoCardProps) => {
 
   const registeredDate = new Date(candidate.registered.date);
 
+  const getBackgroundColor = () => {
+    switch (candidate.status) {
+      case 'approved':
+        return '#0c1a0c';
+      case 'rejected':
+        return '#2a0606';
+      case 'not_yet_reviewed':
+      default:
+        return undefined;
+    }
+  };
+
   return (
-    <Card>
-      {/* <h2>Candidate Info</h2> */}
+    <Card backgroundColor={getBackgroundColor()}>
       <PhotoAndName>
         <img src={candidate.picture.large} alt="candidate" />
-        <Name>{formatCandidateName()}</Name>
+
+        <NameAndStatus>
+          <Name>{formatCandidateName()}</Name>
+          <Status>Status: {candidate.status}</Status>
+        </NameAndStatus>
       </PhotoAndName>
 
       <SectionHeader>Basic Info</SectionHeader>
@@ -51,9 +78,23 @@ export const CandidateInfoCard = ({ candidate }: CandidateInfoCardProps) => {
 
       <CardField label="Phone">Phone: {candidate.phone}</CardField>
       <CardField label="Cell">Cell: {candidate.cell}</CardField>
-      <input type="text" placeholder="Notes" />
-      <button type="button">Approve</button>
-      <button type="button">Reject</button>
+
+      <SectionHeader>Notes</SectionHeader>
+      <NotesTextArea
+        autoFocus
+        placeholder="Notes about the candidate"
+        disabled={candidate.status !== 'not_yet_reviewed'}
+      />
+      <ButtonSection>
+        {candidate.status === 'not_yet_reviewed' ? (
+          <>
+            <Button text="Approve" variant="primary" onClick={() => onApproveCandidate(candidate)} />
+            <Button text="Reject" variant="danger" onClick={() => onRejectCandidate(candidate)} />
+          </>
+        ) : (
+          <Button text="Edit Review" />
+        )}
+      </ButtonSection>
     </Card>
   );
 };
