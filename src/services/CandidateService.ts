@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 // allowing console error for the purpose of this assignment, but in reality this would be better error logging
-import type { Candidate } from 'types/Candidate';
+import type { Candidate, Status } from 'types/Candidate';
 import type { RandomUserResponseInfo } from 'types/RandomUserResponseInfo';
 import { generateId } from 'utils/generateId';
 
@@ -16,11 +16,7 @@ export const getRandomCandidate = async (): Promise<Candidate | null> => {
   }
 };
 
-export interface ExtendedCandidate extends Candidate {
-  savedId: string; // named this way to avoid conflict with existing ID field from original randomuser API
-}
-
-export const getSavedCandidates = async (): Promise<ExtendedCandidate[]> => {
+export const getSavedCandidates = async (): Promise<Candidate[]> => {
   try {
     const localStorageCandidates = localStorage.getItem('candidates');
     if (localStorageCandidates) {
@@ -51,6 +47,32 @@ export const saveCandidate = async (
       localStorage.setItem('candidates', JSON.stringify([{ ...candidate, status, savedId: id, notes }]));
     }
     return id;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export const updateCandidateReview = async (candidate: Candidate, newStatus: Status, notes?: string) => {
+  try {
+    const localStorageCandidates = localStorage.getItem('candidates');
+
+    if (localStorageCandidates) {
+      const parsedCandidates: Candidate[] = JSON.parse(localStorageCandidates); // parse existing candidates
+      const indexToUpdate = parsedCandidates.findIndex(
+        (candidateReview) => candidateReview.savedId === candidate.savedId,
+      );
+
+      if (indexToUpdate >= 0) {
+        const updatedReview = { ...parsedCandidates[indexToUpdate], status: newStatus, notes };
+        const reviewsCopy = [...parsedCandidates];
+        reviewsCopy[indexToUpdate] = updatedReview;
+        localStorage.setItem('candidates', JSON.stringify(reviewsCopy));
+
+        return candidate.savedId;
+      }
+    }
+    throw new Error('Candidate not found.');
   } catch (error) {
     console.error(error);
     return null;

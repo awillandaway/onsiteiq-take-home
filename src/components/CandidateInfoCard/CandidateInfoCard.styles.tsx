@@ -12,7 +12,7 @@ export const Name = styled.div`
   font-size: 32px;
 `;
 
-export const Status = styled.div`
+export const StatusWrapper = styled.div`
   font-size: 20px;
 `;
 

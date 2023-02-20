@@ -1,28 +1,34 @@
 import { Button } from 'components/shared/Button/Button';
 import { Card } from 'components/shared/Card/Card';
 import { useState } from 'react';
-import type { ExtendedCandidate } from 'services/CandidateService';
-import type { Candidate } from 'types/Candidate';
+import type { Status, Candidate } from 'types/Candidate';
 import { capitalizeFirstLetter } from 'utils/StringUtils';
 import {
+  StatusWrapper,
   ButtonSection,
   Name,
   NameAndStatus,
   NotesTextArea,
   PhotoAndName,
   SectionHeader,
-  Status,
 } from './CandidateInfoCard.styles';
 import { CardField } from './CardField/CardField';
 
 interface CandidateInfoCardProps {
-  candidate: Candidate | ExtendedCandidate;
+  candidate: Candidate;
   onApproveCandidate: (candidate: Candidate, notes?: string) => void;
   onRejectCandidate: (candidate: Candidate, notes?: string) => void;
+  onClickEditReview?: (candidate: Candidate) => void;
 }
 
-export const CandidateInfoCard = ({ candidate, onApproveCandidate, onRejectCandidate }: CandidateInfoCardProps) => {
+export const CandidateInfoCard = ({
+  candidate,
+  onApproveCandidate,
+  onRejectCandidate,
+  onClickEditReview = () => {},
+}: CandidateInfoCardProps) => {
   const [notes, setNotes] = useState(candidate.notes);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   const formatCandidateName = () => {
     const { title, first, last } = candidate.name;
@@ -61,7 +67,7 @@ export const CandidateInfoCard = ({ candidate, onApproveCandidate, onRejectCandi
         <NameAndStatus>
           <Name>{formatCandidateName()}</Name>
           {candidate.status !== 'not_yet_reviewed' && (
-            <Status>Status: {capitalizeFirstLetter(candidate.status)}</Status>
+            <StatusWrapper>Status: {capitalizeFirstLetter(candidate.status)}</StatusWrapper>
           )}
         </NameAndStatus>
       </PhotoAndName>
@@ -99,7 +105,7 @@ export const CandidateInfoCard = ({ candidate, onApproveCandidate, onRejectCandi
             <Button text="Reject" variant="danger" onClick={() => onRejectCandidate(candidate, notes)} />
           </>
         ) : (
-          <Button text="Edit Review" />
+          <Button text="Edit Review" onClick={() => onClickEditReview(candidate, notes)} />
         )}
       </ButtonSection>
     </Card>

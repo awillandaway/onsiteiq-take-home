@@ -62,4 +62,5 @@ export interface Candidate {
   nat: string;
   status: Status;
   notes?: string;
+  savedId?: string; // named this way to avoid conflict with existing ID field from original randomuser API
 }

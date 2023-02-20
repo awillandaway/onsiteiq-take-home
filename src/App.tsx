@@ -1,9 +1,13 @@
 import { useModal } from 'hooks/useModal';
 import { useEffect, useState } from 'react';
-import type { ExtendedCandidate } from 'services/CandidateService';
-import { getRandomCandidate, getSavedCandidates, saveCandidate } from 'services/CandidateService';
+import {
+  getRandomCandidate,
+  getSavedCandidates,
+  saveCandidate,
+  updateCandidateReview,
+} from 'services/CandidateService';
 import { CandidateInfoCard } from 'components/CandidateInfoCard/CandidateInfoCard';
-import type { Candidate } from 'types/Candidate';
+import type { Candidate, Status } from 'types/Candidate';
 import { Button } from 'components/shared/Button/Button';
 import {
   CandidateList,
@@ -21,11 +25,11 @@ const App = () => {
   // const { isOpen, toggleModal } = useModal();
   const [currentCandidateInfo, setCurrentCandidateInfo] = useState<Candidate | null>();
 
-  const [savedCandidates, setSavedCandidates] = useState<ExtendedCandidate[]>([]);
+  const [candidateReviews, setCandidateReviews] = useState<Candidate[]>([]);
 
   const updateSavedCandidatesList = async () => {
     const candidates = await getSavedCandidates();
-    setSavedCandidates([...candidates]);
+    setCandidateReviews([...candidates]);
   };
 
   useEffect(() => {
@@ -52,7 +56,20 @@ const App = () => {
     setCurrentCandidateInfo(null);
   };
 
-  const onEditCandidate = () => {};
+  const onClickEditReview = (candidate: Candidate, notes?: string) => {
+    updateCandidateReview(candidate, 'not_yet_reviewed', notes);
+    updateSavedCandidatesList();
+  };
+
+  const onEditModeApprove = (candidate: Candidate, notes?: string) => {
+    updateCandidateReview(candidate, 'approved', notes);
+    updateSavedCandidatesList();
+  };
+
+  const onEditModeReject = (candidate: Candidate, notes?: string) => {
+    updateCandidateReview(candidate, 'rejected', notes);
+    updateSavedCandidatesList();
+  };
 
   return (
     <div>
@@ -85,11 +102,12 @@ const App = () => {
         <SavedReviewsSection>
           <h2>Saved Reviews</h2>
           <CandidateList>
-            {savedCandidates.map((candidate) => (
+            {candidateReviews.map((candidate) => (
               <CandidateInfoCard
                 candidate={candidate}
-                onApproveCandidate={onApproveCandidate}
-                onRejectCandidate={onRejectCandidate}
+                onApproveCandidate={onEditModeApprove}
+                onRejectCandidate={onEditModeReject}
+                onClickEditReview={onClickEditReview}
               />
             ))}
           </CandidateList>
