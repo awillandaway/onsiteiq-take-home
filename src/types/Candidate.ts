@@ -45,12 +45,14 @@ interface Picture {
   thumbnail: string;
 }
 
+export type Status = 'approved' | 'rejected' | 'not_yet_reviewed';
+
 export interface Candidate {
   gender: string;
   name: Name;
   location: Location;
   email: string;
-  // login
+  // login info omitted
   dob: TimeSinceDate;
   registered: TimeSinceDate;
   phone: string;
@@ -58,4 +60,7 @@ export interface Candidate {
   id: ID;
   picture: Picture;
   nat: string;
+  status: Status;
+  notes?: string;
+  savedId?: string; // named this way to avoid conflict with existing ID field from original randomuser API
 }

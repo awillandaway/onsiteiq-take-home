@@ -3,6 +3,9 @@ import { CardWrapper } from './Card.styles';
 
 interface CardProps {
   children?: ReactNode;
+  backgroundColor?: string;
 }
 
-export const Card = ({ children }: CardProps) => <CardWrapper>{children}</CardWrapper>;
+export const Card = ({ children, backgroundColor }: CardProps) => (
+  <CardWrapper backgroundColor={backgroundColor}>{children}</CardWrapper>
+);
