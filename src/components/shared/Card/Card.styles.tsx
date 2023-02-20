@@ -10,8 +10,8 @@ export const CardWrapper = styled.div<CardWrapperProps>`
   border: 2px solid ${onsiteIqPurple};
   background-color: ${(props) => (props.backgroundColor ? props.backgroundColor : '#111111')};
   padding: 16px;
-  width: 600px;
+  width: 550px;
   display: flex;
   flex-direction: column;
-  flex: 0 1 600px;
+  flex: 0 0 550px;
 `;

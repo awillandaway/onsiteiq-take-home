@@ -1,7 +1,7 @@
 import { Button } from 'components/shared/Button/Button';
 import { Card } from 'components/shared/Card/Card';
 import { useState } from 'react';
-import type { Status, Candidate } from 'types/Candidate';
+import type { Candidate } from 'types/Candidate';
 import { capitalizeFirstLetter } from 'utils/StringUtils';
 import {
   StatusWrapper,
@@ -18,7 +18,7 @@ interface CandidateInfoCardProps {
   candidate: Candidate;
   onApproveCandidate: (candidate: Candidate, notes?: string) => void;
   onRejectCandidate: (candidate: Candidate, notes?: string) => void;
-  onClickEditReview?: (candidate: Candidate) => void;
+  onClickEditReview?: (candidate: Candidate, notes?: string) => void;
 }
 
 export const CandidateInfoCard = ({
@@ -28,7 +28,6 @@ export const CandidateInfoCard = ({
   onClickEditReview = () => {},
 }: CandidateInfoCardProps) => {
   const [notes, setNotes] = useState(candidate.notes);
-  const [isEditMode, setIsEditMode] = useState(false);
 
   const formatCandidateName = () => {
     const { title, first, last } = candidate.name;
