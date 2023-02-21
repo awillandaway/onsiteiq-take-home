@@ -30,7 +30,7 @@ interface Location {
 }
 
 interface TimeSinceDate {
-  date: Date;
+  date: string;
   age: number; // years elapsed since date
 }
 

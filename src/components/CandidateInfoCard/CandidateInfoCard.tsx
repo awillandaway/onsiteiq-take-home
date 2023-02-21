@@ -21,6 +21,18 @@ interface CandidateInfoCardProps {
   onClickEditReview?: (candidate: Candidate, notes?: string) => void;
 }
 
+export const getBackgroundColor = (candidate: Candidate) => {
+  switch (candidate.status) {
+    case 'approved':
+      return '#0c1a0c';
+    case 'rejected':
+      return '#2a0606';
+    case 'not_yet_reviewed':
+    default:
+      return undefined;
+  }
+};
+
 export const CandidateInfoCard = ({
   candidate,
   onApproveCandidate,
@@ -46,20 +58,8 @@ export const CandidateInfoCard = ({
 
   const registeredDate = new Date(candidate.registered.date);
 
-  const getBackgroundColor = () => {
-    switch (candidate.status) {
-      case 'approved':
-        return '#0c1a0c';
-      case 'rejected':
-        return '#2a0606';
-      case 'not_yet_reviewed':
-      default:
-        return undefined;
-    }
-  };
-
   return (
-    <Card backgroundColor={getBackgroundColor()}>
+    <Card backgroundColor={getBackgroundColor(candidate)}>
       <PhotoAndName>
         <img src={candidate.picture.large} alt="candidate" />
 
@@ -92,6 +92,7 @@ export const CandidateInfoCard = ({
       <SectionHeader>Notes</SectionHeader>
       <NotesTextArea
         autoFocus
+        aria-label="notes-input"
         placeholder="Notes about the candidate"
         defaultValue={candidate.notes}
         disabled={candidate.status !== 'not_yet_reviewed'}

@@ -5,3 +5,4 @@ package-lock.json
 node_modules
 dist
 jest.*.ts
+*.mock.ts

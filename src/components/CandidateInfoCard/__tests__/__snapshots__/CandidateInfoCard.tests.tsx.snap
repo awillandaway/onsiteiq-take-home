@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CandidateInfoCard Renders correctly 1`] = `
+<div
+  className="sc-gswNZR fwyvqt"
+>
+  <div
+    className="sc-hLBbgP gJsMjZ"
+  >
+    <img
+      alt="candidate"
+      src="https://randomuser.me/api/portraits/men/76.jpg"
+    />
+    <div
+      className="sc-gKPRtg jGdynd"
+    >
+      <div
+        className="sc-eDvSVe QHMfZ"
+      >
+        Mr John Smith
+      </div>
+    </div>
+  </div>
+  <div
+    className="sc-iBYQkv hmotmI"
+  >
+    Basic Info
+  </div>
+  <div
+    className="sc-jrcTuL dzWBFN"
+  >
+    <div
+      className="sc-kDvujY eutWaG"
+    >
+      Registered
+    </div>
+    <div
+      className="sc-ipEyDJ eSJufq"
+    >
+      10/15/2017
+    </div>
+  </div>
+  <div
+    className="sc-jrcTuL dzWBFN"
+  >
+    <div
+      className="sc-kDvujY eutWaG"
+    >
+      Gender
+    </div>
+    <div
+      className="sc-ipEyDJ eSJufq"
+    >
+      Male
+    </div>
+  </div>
+  <div
+    className="sc-jrcTuL dzWBFN"
+  >
+    <div
+      className="sc-kDvujY eutWaG"
+    >
+      Age
+    </div>
+    <div
+      className="sc-ipEyDJ eSJufq"
+    >
+      67
+    </div>
+  </div>
+  <div
+    className="sc-iBYQkv hmotmI"
+  >
+    Contact Info
+  </div>
+  <div
+    className="sc-jrcTuL dzWBFN"
+  >
+    <div
+      className="sc-kDvujY eutWaG"
+    >
+      Email
+    </div>
+    <div
+      className="sc-ipEyDJ eSJufq"
+    >
+      john.smith@test.com
+    </div>
+  </div>
+  <div
+    className="sc-jrcTuL dzWBFN"
+  >
+    <div
+      className="sc-kDvujY eutWaG"
+    >
+      Address
+    </div>
+    <div
+      className="sc-ipEyDJ eSJufq"
+    >
+      <div>
+        <div>
+          1 Test Street
+        </div>
+        <div>
+          New York, New York 11111
+        </div>
+        <div>
+          United States
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="sc-jrcTuL dzWBFN"
+  >
+    <div
+      className="sc-kDvujY eutWaG"
+    >
+      Phone
+    </div>
+    <div
+      className="sc-ipEyDJ eSJufq"
+    >
+      Phone: 
+      (123) 456-7890
+    </div>
+  </div>
+  <div
+    className="sc-jrcTuL dzWBFN"
+  >
+    <div
+      className="sc-kDvujY eutWaG"
+    >
+      Cell
+    </div>
+    <div
+      className="sc-ipEyDJ eSJufq"
+    >
+      Cell: 
+      (111) 111-1111
+    </div>
+  </div>
+  <div
+    className="sc-iBYQkv hmotmI"
+  >
+    Notes
+  </div>
+  <textarea
+    aria-label="notes-input"
+    autoFocus={true}
+    className="sc-ftTHYK CzUZx"
+    disabled={false}
+    onChange={[Function]}
+    placeholder="Notes about the candidate"
+  />
+  <div
+    className="sc-pyfCe frezrP"
+  >
+    <button
+      className="sc-bcXHqe eftqLE"
+      onClick={[Function]}
+      type="button"
+    >
+      Approve
+    </button>
+    <button
+      className="sc-bcXHqe edihgN"
+      onClick={[Function]}
+      type="button"
+    >
+      Reject
+    </button>
+  </div>
+</div>
+`;

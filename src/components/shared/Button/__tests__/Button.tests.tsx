@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { fireEvent, render } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import { Button } from '../Button';
