@@ -1,4 +1,3 @@
-import { useModal } from 'hooks/useModal';
 import { useEffect, useState } from 'react';
 import {
   getRandomCandidate,

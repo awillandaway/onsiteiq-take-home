@@ -10,10 +10,18 @@ export const PhotoAndName = styled.div`
 
 export const Name = styled.div`
   font-size: 32px;
+
+  @media (max-width: 500px) {
+    font-size: 20px;
+  }
 `;
 
 export const StatusWrapper = styled.div`
   font-size: 20px;
+
+  @media (max-width: 500px) {
+    font-size: 14px;
+  }
 `;
 
 export const NameAndStatus = styled.div`

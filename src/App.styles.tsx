@@ -8,10 +8,21 @@ export const Navbar = styled.nav`
   border-bottom: 2px solid ${onsiteIqPurple};
   display: flex;
   align-items: center;
+
+  @media (max-width: 600px) {
+    H1 {
+      font-size: 14px;
+    }
+  }
 `;
 
 export const NotificationsSection = styled.div`
   margin-left: auto;
+  text-align: right;
+
+  @media (max-width: 600px) {
+    font-size: 12px;
+  }
 `;
 
 export const NotificationNumber = styled.span`
@@ -30,6 +41,10 @@ export const NotificationNumber = styled.span`
 export const MainContent = styled.div`
   padding: 16px;
   display: flex;
+
+  @media (max-width: 1400px) {
+    flex-direction: column;
+  }
 `;
 
 export const CandidateList = styled.div`
@@ -37,6 +52,10 @@ export const CandidateList = styled.div`
   flex-wrap: wrap;
   ${CardWrapper} {
     margin: 0 8px 8px 0;
+  }
+
+  @media (max-width: 1400px) {
+    justify-content: center;
   }
 `;
 
@@ -49,11 +68,26 @@ export const StartNewReview = styled.div`
   border: 2px solid ${onsiteIqPurple};
   padding: 16px;
   background: #111111;
+  text-align: center;
+
+  @media (max-width: 1400px) {
+    margin-right: 0;
+  }
 `;
 
 export const NewReviewSection = styled.div`
-  width: 700px;
+  padding-right: 64px;
   flex: 1 0 auto;
+
+  @media (max-width: 1400px) {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 0;
+    padding-bottom: 16px;
+    border-bottom: 1px solid grey;
+  }
 `;
 
 export const SavedReviewsSection = styled.div`
@@ -61,4 +95,13 @@ export const SavedReviewsSection = styled.div`
   padding-left: 64px;
   max-height: calc(100vh - 29px - 16px - 2px - 32px);
   overflow-y: auto;
+
+  @media (max-width: 1400px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-left: none;
+    padding-left: 0;
+    padding-top: 16px;
+  }
 `;

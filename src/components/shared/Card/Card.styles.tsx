@@ -14,4 +14,15 @@ export const CardWrapper = styled.div<CardWrapperProps>`
   display: flex;
   flex-direction: column;
   flex: 0 0 550px;
+
+  @media (max-width: 1400px) {
+    width: 400px;
+    flex: 0 0 400px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 500px) {
+    width: auto;
+    flex: 1;
+  }
 `;
