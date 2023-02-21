@@ -9,6 +9,7 @@ import { CandidateInfoCard } from 'components/CandidateInfoCard/CandidateInfoCar
 import type { Candidate } from 'types/Candidate';
 import { Button } from 'components/shared/Button/Button';
 import {
+  AppWrapper,
   CandidateList,
   MainContent,
   Navbar,
@@ -70,7 +71,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <AppWrapper>
       <Navbar>
         <h1>OnsiteIQ HR Application</h1>
         <NotificationsSection>
@@ -109,10 +110,16 @@ const App = () => {
                 onClickEditReview={onClickEditReview}
               />
             ))}
+            {candidateReviews.length === 0 && (
+              <StartNewReview>
+                You have no saved reviews. Once you complete a review, it will appear here. To start a review, click the
+                Start New Candidate Review button.
+              </StartNewReview>
+            )}
           </CandidateList>
         </SavedReviewsSection>
       </MainContent>
-    </div>
+    </AppWrapper>
   );
 };
 

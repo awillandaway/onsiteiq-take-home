@@ -2,6 +2,12 @@ import { CardWrapper } from 'components/shared/Card/Card.styles';
 import { onsiteIqPurple } from 'constants/colors';
 import styled from 'styled-components';
 
+export const AppWrapper = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
+
 export const Navbar = styled.nav`
   background-color: #111111;
   padding: 8px 16px;
@@ -41,6 +47,7 @@ export const NotificationNumber = styled.span`
 export const MainContent = styled.div`
   padding: 16px;
   display: flex;
+  flex: 1 1 auto;
 
   @media (max-width: 1400px) {
     flex-direction: column;
@@ -64,7 +71,6 @@ export const StartNewReview = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-right: 64px;
   border: 2px solid ${onsiteIqPurple};
   padding: 16px;
   background: #111111;
@@ -76,8 +82,8 @@ export const StartNewReview = styled.div`
 `;
 
 export const NewReviewSection = styled.div`
-  padding-right: 64px;
-  flex: 1 0 auto;
+  padding-right: 32px;
+  flex: 1 1 auto;
 
   @media (max-width: 1400px) {
     width: auto;
@@ -92,9 +98,10 @@ export const NewReviewSection = styled.div`
 
 export const SavedReviewsSection = styled.div`
   border-left: 1px solid grey;
-  padding-left: 64px;
+  padding-left: 32px;
   max-height: calc(100vh - 29px - 16px - 2px - 32px);
   overflow-y: auto;
+  flex: 2 1 auto;
 
   @media (max-width: 1400px) {
     display: flex;
