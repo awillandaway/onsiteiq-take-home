@@ -2,175 +2,179 @@
 
 exports[`CandidateInfoCard Renders correctly 1`] = `
 <div
-  className="sc-gswNZR fwyvqt"
+  data-testid="candidate-info-card"
 >
   <div
-    className="sc-hLBbgP gJsMjZ"
+    className="sc-gswNZR fwyvqt"
   >
-    <img
-      alt="candidate"
-      src="https://randomuser.me/api/portraits/men/76.jpg"
-    />
     <div
-      className="sc-gKPRtg jGdynd"
+      className="sc-hLBbgP gJsMjZ"
+    >
+      <img
+        alt="candidate"
+        src="https://randomuser.me/api/portraits/men/76.jpg"
+      />
+      <div
+        className="sc-gKPRtg jGdynd"
+      >
+        <div
+          className="sc-eDvSVe QHMfZ"
+        >
+          Mr John Smith
+        </div>
+      </div>
+    </div>
+    <div
+      className="sc-iBYQkv hmotmI"
+    >
+      Basic Info
+    </div>
+    <div
+      className="sc-jrcTuL dzWBFN"
     >
       <div
-        className="sc-eDvSVe QHMfZ"
+        className="sc-kDvujY eutWaG"
       >
-        Mr John Smith
+        Registered
+      </div>
+      <div
+        className="sc-ipEyDJ eSJufq"
+      >
+        10/15/2017
       </div>
     </div>
-  </div>
-  <div
-    className="sc-iBYQkv hmotmI"
-  >
-    Basic Info
-  </div>
-  <div
-    className="sc-jrcTuL dzWBFN"
-  >
     <div
-      className="sc-kDvujY eutWaG"
+      className="sc-jrcTuL dzWBFN"
     >
-      Registered
+      <div
+        className="sc-kDvujY eutWaG"
+      >
+        Gender
+      </div>
+      <div
+        className="sc-ipEyDJ eSJufq"
+      >
+        Male
+      </div>
     </div>
     <div
-      className="sc-ipEyDJ eSJufq"
+      className="sc-jrcTuL dzWBFN"
     >
-      10/15/2017
-    </div>
-  </div>
-  <div
-    className="sc-jrcTuL dzWBFN"
-  >
-    <div
-      className="sc-kDvujY eutWaG"
-    >
-      Gender
-    </div>
-    <div
-      className="sc-ipEyDJ eSJufq"
-    >
-      Male
-    </div>
-  </div>
-  <div
-    className="sc-jrcTuL dzWBFN"
-  >
-    <div
-      className="sc-kDvujY eutWaG"
-    >
-      Age
+      <div
+        className="sc-kDvujY eutWaG"
+      >
+        Age
+      </div>
+      <div
+        className="sc-ipEyDJ eSJufq"
+      >
+        67
+      </div>
     </div>
     <div
-      className="sc-ipEyDJ eSJufq"
+      className="sc-iBYQkv hmotmI"
     >
-      67
-    </div>
-  </div>
-  <div
-    className="sc-iBYQkv hmotmI"
-  >
-    Contact Info
-  </div>
-  <div
-    className="sc-jrcTuL dzWBFN"
-  >
-    <div
-      className="sc-kDvujY eutWaG"
-    >
-      Email
+      Contact Info
     </div>
     <div
-      className="sc-ipEyDJ eSJufq"
+      className="sc-jrcTuL dzWBFN"
     >
-      john.smith@test.com
+      <div
+        className="sc-kDvujY eutWaG"
+      >
+        Email
+      </div>
+      <div
+        className="sc-ipEyDJ eSJufq"
+      >
+        john.smith@test.com
+      </div>
     </div>
-  </div>
-  <div
-    className="sc-jrcTuL dzWBFN"
-  >
     <div
-      className="sc-kDvujY eutWaG"
+      className="sc-jrcTuL dzWBFN"
     >
-      Address
-    </div>
-    <div
-      className="sc-ipEyDJ eSJufq"
-    >
-      <div>
+      <div
+        className="sc-kDvujY eutWaG"
+      >
+        Address
+      </div>
+      <div
+        className="sc-ipEyDJ eSJufq"
+      >
         <div>
-          1 Test Street
-        </div>
-        <div>
-          New York, New York 11111
-        </div>
-        <div>
-          United States
+          <div>
+            1 Test Street
+          </div>
+          <div>
+            New York, New York 11111
+          </div>
+          <div>
+            United States
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div
-    className="sc-jrcTuL dzWBFN"
-  >
     <div
-      className="sc-kDvujY eutWaG"
+      className="sc-jrcTuL dzWBFN"
     >
-      Phone
+      <div
+        className="sc-kDvujY eutWaG"
+      >
+        Phone
+      </div>
+      <div
+        className="sc-ipEyDJ eSJufq"
+      >
+        Phone: 
+        (123) 456-7890
+      </div>
     </div>
     <div
-      className="sc-ipEyDJ eSJufq"
+      className="sc-jrcTuL dzWBFN"
     >
-      Phone: 
-      (123) 456-7890
+      <div
+        className="sc-kDvujY eutWaG"
+      >
+        Cell
+      </div>
+      <div
+        className="sc-ipEyDJ eSJufq"
+      >
+        Cell: 
+        (111) 111-1111
+      </div>
     </div>
-  </div>
-  <div
-    className="sc-jrcTuL dzWBFN"
-  >
     <div
-      className="sc-kDvujY eutWaG"
+      className="sc-iBYQkv hmotmI"
     >
-      Cell
+      Notes
     </div>
+    <textarea
+      aria-label="notes-input"
+      autoFocus={true}
+      className="sc-ftTHYK CzUZx"
+      disabled={false}
+      onChange={[Function]}
+      placeholder="Notes about the candidate"
+    />
     <div
-      className="sc-ipEyDJ eSJufq"
+      className="sc-pyfCe frezrP"
     >
-      Cell: 
-      (111) 111-1111
+      <button
+        className="sc-bcXHqe eftqLE"
+        onClick={[Function]}
+        type="button"
+      >
+        Approve
+      </button>
+      <button
+        className="sc-bcXHqe edihgN"
+        onClick={[Function]}
+        type="button"
+      >
+        Reject
+      </button>
     </div>
-  </div>
-  <div
-    className="sc-iBYQkv hmotmI"
-  >
-    Notes
-  </div>
-  <textarea
-    aria-label="notes-input"
-    autoFocus={true}
-    className="sc-ftTHYK CzUZx"
-    disabled={false}
-    onChange={[Function]}
-    placeholder="Notes about the candidate"
-  />
-  <div
-    className="sc-pyfCe frezrP"
-  >
-    <button
-      className="sc-bcXHqe eftqLE"
-      onClick={[Function]}
-      type="button"
-    >
-      Approve
-    </button>
-    <button
-      className="sc-bcXHqe edihgN"
-      onClick={[Function]}
-      type="button"
-    >
-      Reject
-    </button>
   </div>
 </div>
 `;

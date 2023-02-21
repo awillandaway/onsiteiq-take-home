@@ -103,6 +103,7 @@ const App = () => {
             {candidateReviews.map((candidate) => (
               <CandidateInfoCard
                 candidate={candidate}
+                key={candidate.savedId}
                 onApproveCandidate={onEditModeApprove}
                 onRejectCandidate={onEditModeReject}
                 onClickEditReview={onClickEditReview}
