@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardField Renders correctly 1`] = `
+<div
+  className="sc-bcXHqe ktVuSG"
+>
+  <div
+    className="sc-gswNZR jDfkgI"
+  >
+    Test label
+  </div>
+  <div
+    className="sc-dkrFOg kGVctq"
+  >
+    Test content
+  </div>
+</div>
+`;

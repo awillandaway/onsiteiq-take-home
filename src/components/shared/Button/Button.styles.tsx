@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import styled, { css } from 'styled-components';
 import { lighten } from 'polished';
 import { onsiteIqPurple } from 'constants/colors';
