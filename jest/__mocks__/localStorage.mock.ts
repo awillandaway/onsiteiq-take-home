@@ -1,9 +1,11 @@
 import { mockApprovedCandidate, mockRejectedCandidate } from '../testData';
 
+const initialStore = {
+  candidates: JSON.stringify([mockApprovedCandidate, mockRejectedCandidate]),
+};
+
 const localStorageMock = (() => {
-  let store: Record<string, any> = {
-    candidates: JSON.stringify([mockApprovedCandidate, mockRejectedCandidate]),
-  };
+  let store: Record<string, any> = initialStore;
 
   return {
     getItem(key) {
@@ -15,7 +17,7 @@ const localStorageMock = (() => {
     },
 
     clear() {
-      store = {};
+      store = { ...initialStore };
     },
 
     removeItem(key) {
