@@ -21,6 +21,18 @@ interface CandidateInfoCardProps {
   onClickEditReview?: (candidate: Candidate, notes?: string) => void;
 }
 
+export const getBackgroundColor = (candidate: Candidate) => {
+  switch (candidate.status) {
+    case 'approved':
+      return '#0c1a0c';
+    case 'rejected':
+      return '#2a0606';
+    case 'not_yet_reviewed':
+    default:
+      return undefined;
+  }
+};
+
 export const CandidateInfoCard = ({
   candidate,
   onApproveCandidate,
@@ -46,67 +58,58 @@ export const CandidateInfoCard = ({
 
   const registeredDate = new Date(candidate.registered.date);
 
-  const getBackgroundColor = () => {
-    switch (candidate.status) {
-      case 'approved':
-        return '#0c1a0c';
-      case 'rejected':
-        return '#2a0606';
-      case 'not_yet_reviewed':
-      default:
-        return undefined;
-    }
-  };
-
   return (
-    <Card backgroundColor={getBackgroundColor()}>
-      <PhotoAndName>
-        <img src={candidate.picture.large} alt="candidate" />
+    <div data-testid="candidate-info-card">
+      <Card backgroundColor={getBackgroundColor(candidate)}>
+        <PhotoAndName>
+          <img src={candidate.picture.large} alt="candidate" />
 
-        <NameAndStatus>
-          <Name>{formatCandidateName()}</Name>
-          {candidate.status !== 'not_yet_reviewed' && (
-            <StatusWrapper>Status: {capitalizeFirstLetter(candidate.status)}</StatusWrapper>
+          <NameAndStatus>
+            <Name>{formatCandidateName()}</Name>
+            {candidate.status !== 'not_yet_reviewed' && (
+              <StatusWrapper>Status: {capitalizeFirstLetter(candidate.status)}</StatusWrapper>
+            )}
+          </NameAndStatus>
+        </PhotoAndName>
+
+        <SectionHeader>Basic Info</SectionHeader>
+        <CardField label="Registered">{registeredDate.toLocaleDateString()}</CardField>
+        <CardField label="Gender">{capitalizeFirstLetter(candidate.gender)}</CardField>
+        <CardField label="Age">{candidate.dob.age}</CardField>
+
+        <SectionHeader>Contact Info</SectionHeader>
+        <CardField label="Email">{candidate.email}</CardField>
+        <CardField label="Address">
+          <div>
+            <div>{formatStreet()}</div>
+            <div>{formatCityState()}</div>
+            <div>{candidate.location.country}</div>
+          </div>
+        </CardField>
+
+        <CardField label="Phone">Phone: {candidate.phone}</CardField>
+        <CardField label="Cell">Cell: {candidate.cell}</CardField>
+
+        <SectionHeader>Notes</SectionHeader>
+        <NotesTextArea
+          autoFocus
+          aria-label="notes-input"
+          placeholder="Notes about the candidate"
+          defaultValue={candidate.notes}
+          disabled={candidate.status !== 'not_yet_reviewed'}
+          onChange={(event) => setNotes(event.target.value)}
+        />
+        <ButtonSection>
+          {candidate.status === 'not_yet_reviewed' ? (
+            <>
+              <Button text="Approve" variant="primary" onClick={() => onApproveCandidate(candidate, notes)} />
+              <Button text="Reject" variant="danger" onClick={() => onRejectCandidate(candidate, notes)} />
+            </>
+          ) : (
+            <Button text="Edit Review" onClick={() => onClickEditReview(candidate, notes)} />
           )}
-        </NameAndStatus>
-      </PhotoAndName>
-
-      <SectionHeader>Basic Info</SectionHeader>
-      <CardField label="Registered">{registeredDate.toLocaleDateString()}</CardField>
-      <CardField label="Gender">{capitalizeFirstLetter(candidate.gender)}</CardField>
-      <CardField label="Age">{candidate.dob.age}</CardField>
-
-      <SectionHeader>Contact Info</SectionHeader>
-      <CardField label="Email">{candidate.email}</CardField>
-      <CardField label="Address">
-        <div>
-          <div>{formatStreet()}</div>
-          <div>{formatCityState()}</div>
-          <div>{candidate.location.country}</div>
-        </div>
-      </CardField>
-
-      <CardField label="Phone">Phone: {candidate.phone}</CardField>
-      <CardField label="Cell">Cell: {candidate.cell}</CardField>
-
-      <SectionHeader>Notes</SectionHeader>
-      <NotesTextArea
-        autoFocus
-        placeholder="Notes about the candidate"
-        defaultValue={candidate.notes}
-        disabled={candidate.status !== 'not_yet_reviewed'}
-        onChange={(event) => setNotes(event.target.value)}
-      />
-      <ButtonSection>
-        {candidate.status === 'not_yet_reviewed' ? (
-          <>
-            <Button text="Approve" variant="primary" onClick={() => onApproveCandidate(candidate, notes)} />
-            <Button text="Reject" variant="danger" onClick={() => onRejectCandidate(candidate, notes)} />
-          </>
-        ) : (
-          <Button text="Edit Review" onClick={() => onClickEditReview(candidate, notes)} />
-        )}
-      </ButtonSection>
-    </Card>
+        </ButtonSection>
+      </Card>
+    </div>
   );
 };

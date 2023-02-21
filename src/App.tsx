@@ -1,4 +1,3 @@
-import { useModal } from 'hooks/useModal';
 import { useEffect, useState } from 'react';
 import {
   getRandomCandidate,
@@ -7,7 +6,7 @@ import {
   updateCandidateReview,
 } from 'services/CandidateService';
 import { CandidateInfoCard } from 'components/CandidateInfoCard/CandidateInfoCard';
-import type { Candidate, Status } from 'types/Candidate';
+import type { Candidate } from 'types/Candidate';
 import { Button } from 'components/shared/Button/Button';
 import {
   CandidateList,
@@ -22,7 +21,6 @@ import {
 import './App.css';
 
 const App = () => {
-  // const { isOpen, toggleModal } = useModal();
   const [currentCandidateInfo, setCurrentCandidateInfo] = useState<Candidate | null>();
 
   const [candidateReviews, setCandidateReviews] = useState<Candidate[]>([]);
@@ -76,8 +74,8 @@ const App = () => {
       <Navbar>
         <h1>OnsiteIQ HR Application</h1>
         <NotificationsSection>
-          You have <NotificationNumber>{Math.floor(Math.random() * 8) + 2}</NotificationNumber> candidates to review.
-          {/* Note: this number is random and therefore not accurate; I just thought it would look nice for visual purposes */}
+          You have <NotificationNumber>9</NotificationNumber> candidates to review.
+          {/* Note: this number is hard-coded to 9 and therefore not accurate; I just thought it would look nice for visual purposes */}
         </NotificationsSection>
       </Navbar>
 
@@ -105,6 +103,7 @@ const App = () => {
             {candidateReviews.map((candidate) => (
               <CandidateInfoCard
                 candidate={candidate}
+                key={candidate.savedId}
                 onApproveCandidate={onEditModeApprove}
                 onRejectCandidate={onEditModeReject}
                 onClickEditReview={onClickEditReview}

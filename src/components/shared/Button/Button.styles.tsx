@@ -11,7 +11,7 @@ const primaryColor = '#185818';
 const dangerColor = '#851e1e';
 
 export const ButtonWrapper = styled.button<ButtonWrapperProps>`
-  height: 40px;
+  min-height: 40px;
   cursor: pointer;
   color: white;
   border: none;
